@@ -1,0 +1,101 @@
+#intro{
+    /* we want to have the height of the intro brack ground aroung 100vh but we also have the nav-bar 
+    substract the nav height from the 100 vh */
+    height: calc(100vh-4rem);
+    width: 100vw;
+    max-width: 80rem;
+    margin: 0px auto;
+    overflow: hidden;
+    /* position: relative; */
+
+}
+
+.bg{
+    position: absolute;
+    top: 0;
+    right: 2vw;
+    z-index: -1;
+    object-fit: cover;
+    height: 100vh;
+}
+
+.introcontent{
+    height: 100vh;
+    width: 100vw;
+    padding: 2rem;
+    font-size: 3rem;
+    font-weight: 700;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+.hello{
+    font-size: 1.5rem;
+    font-weight: 300;
+}
+
+.introname{
+    color: skyblue;
+}
+.intopara{
+    font-size: medium;
+}
+
+.btn{
+    background-color: white;
+    margin: 1rem 0;
+    padding: 0.7rem 1.5rem;
+    border: none;
+    border-radius: 2rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.btnimg{
+    object-fit: cover;
+    margin: 0 .5rem;
+    height: 1rem;
+}
+
+
+/* responsive at 680px */
+@media screen and (max-width:850px) {
+    .bg{
+        right: 4vw;
+    }
+    .introcontent{
+        font-size: 10vw;
+    }
+    .hello{
+        font: 6vw;
+    }
+}
+@media screen and (max-width:410px) {
+    .bg{
+        right: -3vw;
+        
+    }
+   
+}
+/* prev css
+#intro{
+
+    height: calc(100vh-4rem);
+    width: 100vw;
+    max-width: 80rem;
+    margin: 0px auto;
+    overflow: hidden;
+    position: relative;
+
+}
+
+.bg{
+    position: absolute;
+    top: -4rem;
+    right: 0;
+    z-index: -1;
+    object-fit: cover;
+    height: 100vh;
+} */
