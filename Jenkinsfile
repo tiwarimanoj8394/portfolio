@@ -39,11 +39,11 @@ pipeline {
                 // Authenticate with Docker Hub
                 withCredentials([string(credentialsId: DOCKER_CREDENTIALS_ID, variable: 'DOCKER_PASSWORD')]) {
                     sh "docker login -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD}"
+                    // Push the Docker image to Docker Hub
+                    sh "docker push ${DOCKER_IMAGE_NAME}"
                 }
             }
 
-                // Push the Docker image to Docker Hub
-                sh "docker push ${DOCKER_IMAGE_NAME}"
         }
     }
 
