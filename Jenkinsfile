@@ -33,6 +33,7 @@ pipeline {
            steps {
                //build the docker image from dockerfile
                sh "docker build -t portfolioimage -f ${DOCKERFILE_PATH} ."
+               echo 'docker images'
               
            }
         }
@@ -44,7 +45,7 @@ pipeline {
                  }
                 
                  // Push the Docker image to Docker Hub
-                 sh "docker push ${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG}"
+                 sh "docker push ${DOCKER_USERNAME}/reactapp"
                 
             }
 
