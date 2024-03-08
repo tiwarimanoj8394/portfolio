@@ -34,18 +34,16 @@ pipeline {
               
            }
         }
-        stage('Push to Docker Hub') {
-            steps {
-                // Authenticate with Docker Hub
-                 withCredentials([usernamePassword(credentialsId: DOCKER_CREDENTIALS_ID, usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
-                    sh "docker login -u $DOCKER_USERNAME --password-stdin <<< $DOCKER_PASSWORD"
-                    sh "docker tag portfolioimage $DOCKER_IMAGE_NAME:v2"
-                    sh "docker push $DOCKER_IMAGE_NAME:v2"
-                 }
-                
-                
+        stage('Tag and Push to Docker Hub') {
+            environment {
+                DOCKER_USERNAME = credentials('Docker-Credentials').username
+                DOCKER_PASSWORD = credentials('Docker-Credentials').password
             }
-
+            steps {
+                sh "echo \$DOCKER_PASSWORD | docker login -u \$DOCKER_USERNAME --password-stdin"
+                sh "docker tag portfolioimage $DOCKER_IMAGE_NAME:v2"
+                sh "docker push $DOCKER_IMAGE_NAME:v2"
+            }
         }
     }
 
