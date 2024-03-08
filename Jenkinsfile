@@ -42,7 +42,7 @@ pipeline {
                  }
                 
                  // Push the Docker image to Docker Hub
-                 sh 'docker push manojtiwari000/portfolioimage
+                 sh 'docker push manojtiwari000/portfolioimage'
                 
             }
 
