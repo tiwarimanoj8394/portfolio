@@ -2,7 +2,7 @@ pipeline {
     agent any
     tools {
         //Specify the nodejs installation name
-        nodejs 'Nodejs-app '
+        nodejs 'Nodejs-20 '
     }    
     stages {
         stage('Checkout') {
