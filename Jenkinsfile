@@ -3,10 +3,8 @@ pipeline {
 
     environment {
         DOCKER_CREDENTIALS_ID = 'Docker-Credentials'
-        DOCKER_USERNAME = 'manojtiwari000'
-        DOCKER_IMAGE_NAME = 'portfolioimage'
+        DOCKER_IMAGE_NAME = 'manojtiwari000/reactapp'
         DOCKERFILE_PATH = 'Dockerfile'
-        DOCKER_IMAGE_TAG = 'latest'
     }
     //tools {
         //Specify the nodejs installation name
@@ -32,8 +30,7 @@ pipeline {
         stage('docker image') {
            steps {
                //build the docker image from dockerfile
-               sh "docker build -t portfolioimage -f ${DOCKERFILE_PATH} ."
-               echo 'docker images'
+               sh 'docker build -t portfolioimage .'
               
            }
         }
@@ -41,11 +38,11 @@ pipeline {
             steps {
                 // Authenticate with Docker Hub
                  withCredentials([usernamePassword(credentialsId: DOCKER_CREDENTIALS_ID, usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
-                    sh "echo \$DOCKER_PASSWORD | docker login -u \$DOCKER_USERNAME --password-stdin"
+                    sh "docker login -u $DOCKER_USERNAME --password-stdin <<< $DOCKER_PASSWORD"
+                    sh "docker tag portfolioimage $DOCKER_IMAGE_NAME:v2"
+                    sh "docker push $DOCKER_IMAGE_NAME:v2"
                  }
                 
-                 // Push the Docker image to Docker Hub
-                 sh "docker push ${DOCKER_USERNAME}/reactapp"
                 
             }
 
