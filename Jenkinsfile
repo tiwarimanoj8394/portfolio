@@ -2,11 +2,7 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_CREDENTIALS_ID = 'Docker-Credentials'
-        DOCKER_IMAGE_NAME = 'manojtiwari000/reactapp'
-        DOCKERFILE_PATH = 'Dockerfile'
-        DOCKER_USERNAME = credentials('Docker-Credentials').username
-        DOCKER_PASSWORD = credentials('Docker-Credentials').password
+        DOCKER_IMAGE_NAME = 'manojtiwari000/reactapp:v2'
     }
     //tools {
         //Specify the nodejs installation name
@@ -38,9 +34,11 @@ pipeline {
         }
         stage('Tag and Push to Docker Hub') {
             steps {
-                sh "echo \$DOCKER_PASSWORD | docker login -u \$DOCKER_USERNAME --password-stdin"
-                sh "docker tag portfolioimage $DOCKER_IMAGE_NAME:v2"
-                sh "docker push $DOCKER_IMAGE_NAME:v2"
+                 withCredentials([usernamePassword(credentialsId: 'Docker-Credentials', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
+                    sh "echo \$DOCKER_PASSWORD | docker login -u \$DOCKER_USERNAME --password-stdin"
+                    sh "docker tag portfolioimage $DOCKER_IMAGE_NAME"
+                    sh "docker push $DOCKER_IMAGE_NAME"
+                }
             }
         }
     }
