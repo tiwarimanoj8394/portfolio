@@ -18,15 +18,15 @@ pipeline {
            }
         }
 
-        stage('Build') {
-           steps {
+        //stage('Build') {
+           //steps {
               // Install dependencies and build the application
-              sh 'npm install'
-              sh 'npm run build'
+              //sh 'npm install'
+              //sh 'npm run build'
 
-            }
+            //}
 
-         }
+         //}
         stage ('docker image') {
            steps {
                //build the docker image from dockerfile
