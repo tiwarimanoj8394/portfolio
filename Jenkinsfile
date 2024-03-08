@@ -27,7 +27,7 @@ pipeline {
             //}
 
          //}
-        stage ('docker image') {
+        stage('docker image') {
            steps {
                //build the docker image from dockerfile
                sh "docker build -t portfolioimage -f ${DOCKERFILE_PATH} ."
