@@ -42,7 +42,7 @@ pipeline {
                  }
                 
                  // Push the Docker image to Docker Hub
-                 sh 'docker push manojtiwari000/portfolioimage:latest'
+                 sh 'docker push manojtiwari000/reactapp:latest'
                 
             }
 
