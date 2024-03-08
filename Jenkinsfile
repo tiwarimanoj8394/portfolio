@@ -30,7 +30,7 @@ pipeline {
         stage('docker image') {
            steps {
                //build the docker image from dockerfile
-               sh "sudo docker build -t portfolioimage -f ${DOCKERFILE_PATH} ."
+               sh "docker build -t portfolioimage -f ${DOCKERFILE_PATH} ."
               
            }
         }
@@ -38,9 +38,9 @@ pipeline {
             steps {
                 // Authenticate with Docker Hub
                 withCredentials([string(credentialsId: DOCKER_CREDENTIALS_ID, variable: 'DOCKER_PASSWORD')]) {
-                    sh "sudo docker login -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD}"
+                    sh "docker login -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD}"
                     // Push the Docker image to Docker Hub
-                    sh "sudo docker push ${DOCKER_IMAGE_NAME}"
+                    sh "docker push ${DOCKER_IMAGE_NAME}"
                 }
             }
 
