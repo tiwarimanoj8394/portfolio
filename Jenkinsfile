@@ -34,7 +34,7 @@ pipeline {
               
            }
         }
-         stage('Push to Docker Hub') {
+        stage('Push to Docker Hub') {
             steps {
                 // Authenticate with Docker Hub
                 withCredentials([string(credentialsId: DOCKER_CREDENTIALS_ID, variable: 'DOCKER_PASSWORD')]) {
