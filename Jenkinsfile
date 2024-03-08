@@ -37,11 +37,13 @@ pipeline {
         stage('Push to Docker Hub') {
             steps {
                 // Authenticate with Docker Hub
-                withCredentials([usernamePassword(credentialsId: DOCKER_CREDENTIALS_ID, usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
-                    sh "echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin --debug"
-                    sh "docker push ${env.DOCKER_IMAGE_NAME}"
+                 withCredentials([usernamePassword(credentialsId: DOCKER_CREDENTIALS_ID, usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
+                    sh "echo \$DOCKER_PASSWORD | docker login -u \$DOCKER_USERNAME --password-stdin"
+                 }
                 
-                }
+                 // Push the Docker image to Docker Hub
+                 sh 'docker push manojtiwari000/portfolioimage
+                
             }
 
         }
