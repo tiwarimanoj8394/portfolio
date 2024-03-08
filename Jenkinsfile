@@ -6,10 +6,10 @@ pipeline {
         DOCKER_IMAGE_NAME = 'manojtiwari000/portfolioimage'
         DOCKERFILE_PATH = 'Dockerfile'
     }
-    tools {
+    //tools {
         //Specify the nodejs installation name
-        nodejs 'Nodejs-20'
-    }    
+        //nodejs 'Nodejs-20'
+    //}    
     stages {
         stage('Checkout') {
            steps {
