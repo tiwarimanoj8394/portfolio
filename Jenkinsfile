@@ -5,7 +5,7 @@ pipeline {
         stage('Checkout') {
            steps {
                // Checkout code from git repository
-               git 'https://github.com/Githubformanoj/portfolio.git'
+               checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/Githubformanoj/portfolio.git']])
            }
         }
     }
