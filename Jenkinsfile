@@ -3,8 +3,10 @@ pipeline {
 
     environment {
         DOCKER_CREDENTIALS_ID = 'Docker-Credentials'
-        DOCKER_IMAGE_NAME = 'manojtiwari000/portfolioimage'
+        DOCKER_USERNAME = 'manojtiwari000'
+        DOCKER_IMAGE_NAME = 'portfolioimage'
         DOCKERFILE_PATH = 'Dockerfile'
+        DOCKER_IMAGE_TAG = 'latest'
     }
     //tools {
         //Specify the nodejs installation name
@@ -42,7 +44,7 @@ pipeline {
                  }
                 
                  // Push the Docker image to Docker Hub
-                 sh 'docker push manojtiwari000/reactapp'
+                 sh "docker push ${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG}"
                 
             }
 
