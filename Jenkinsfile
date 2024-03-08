@@ -1,6 +1,9 @@
 pipeline {
     agent any
-    
+    tools {
+        //Specify the nodejs installation name
+        nodeJS 'nodeJS 20.11.1 '
+    }    
     stages {
         stage('Checkout') {
            steps {
