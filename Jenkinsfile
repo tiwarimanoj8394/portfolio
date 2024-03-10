@@ -41,6 +41,12 @@ pipeline {
                 }
             }
         }
+
+        stage('Deploy the image to minikube cluster') {
+            steps {
+                "sh kubectl apply -f deployment.yaml -f service.yaml"
+            }
+        }
     }
 
 }
