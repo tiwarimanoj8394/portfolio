@@ -44,7 +44,7 @@ pipeline {
 
         stage('Deploy the image to minikube cluster') {
             steps {
-                sh "kubectl apply -f deployment.yaml && kubectl apply -f service.yaml"
+                sh "sudo kubectl apply -f deployment.yaml && sudo kubectl apply -f service.yaml"
             }
         }
     }
