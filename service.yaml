@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: react-app-service
+  name: react-app-portfolio-service
 spec:
   selector:
-    app: reactapp
+    app: reactapp-portfolio-via-jenkins
   ports:
     - protocol: TCP
       port: 80  # Port you want to expose on the service
