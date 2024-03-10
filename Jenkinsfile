@@ -3,7 +3,7 @@ pipeline {
 
     //environment {
         //DOCKER_IMAGE_NAME = 'manojtiwari000/reactapp:v2'
-    }
+    //}
     //tools {
         //Specify the nodejs installation name
         //nodejs 'Nodejs-20'
@@ -48,5 +48,4 @@ pipeline {
             }
         }
     }
-
 }
