@@ -3,20 +3,20 @@ kind: Deployment
 metadata:
   name: reactapp-deployment
   labels:
-    app: reactapp
+    app: reactapp-portfolio-via-jenkins
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: reactapp
+      app: reactapp-portfolio-via-jenkins
   template:
     metadata:
       labels:
-        app: reactapp
+        app: reactapp-portfolio-via-jenkins
     spec:
       containers:
-      - name: reactapp
-        image: manojtiwari000/reactapp:v1
+      - name: reactapp-portfolio-via-jenkins
+        image: manojtiwari000/reactapp:v2
         ports:
         - containerPort: 3000
 
