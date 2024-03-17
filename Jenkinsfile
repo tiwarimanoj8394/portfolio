@@ -43,14 +43,14 @@ pipeline {
         //}
 
         stage('Deploy the image to minikube cluster') {
-            environment {
-                KUBECONFIG = '/home/tom/.kube' // Set the path to your kubeconfig file
-            }
             steps {
-                sh 'kubectl apply -f deployment.yaml'
-                sh 'kubectl apply -f service.yaml'
-                    
-           }
+                script{
+                    kubernetesDeploy(
+                        cloud: 'kubernetes',
+                        configs: 'deployment.yaml,service.yaml'
+                    )
+                }
+            }
         }
     }
 }
