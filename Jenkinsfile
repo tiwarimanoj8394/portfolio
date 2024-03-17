@@ -44,12 +44,11 @@ pipeline {
 
         stage('Deploy the image to minikube cluster') {
             steps {
-                script{
-                    kubernetesDeploy(
-                        cloud: 'kubernetes',
-                        configs: 'deployment.yaml,service.yaml'
-                    )
-                }
+                withCredentials([
+            string(credentialsId: 'secret', variable: 'api_token')
+            ]) {
+             sh 'kubectl --token $api_token --server https://192.168.49.2:8443  --insecure-skip-tls-verify=true apply -f deployment.yaml '
+               }
             }
         }
     }
