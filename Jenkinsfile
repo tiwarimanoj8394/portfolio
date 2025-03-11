@@ -1,13 +1,13 @@
 pipeline {
     agent any
 
-    //environment {
-        //DOCKER_IMAGE_NAME = 'manojtiwari000/reactapp:v2'
-    //}
-    //tools {
-        //Specify the nodejs installation name
-        //nodejs 'Nodejs-20'
-    //}    
+    environment {
+        DOCKER_IMAGE_NAME = 'manojtiwari000/reactapp:v2'
+    }
+    tools {
+        Specify the nodejs installation name
+        nodejs 'Nodejs-20'
+    }    
     stages {
         stage('Checkout') {
            steps {
@@ -16,31 +16,31 @@ pipeline {
            }
         }
 
-        //stage('Build') {
-           //steps {
-              // Install dependencies and build the application
-              //sh 'npm install'
-              //sh 'npm run build'
+        stage('Build') {
+           steps {
+              Install dependencies and build the application
+              sh 'npm install'
+              sh 'npm run build'
 
-            //}
+            }
 
-         //}
-        //stage('docker image') {
-           //steps {
-               //build the docker image from dockerfile
-               //sh 'docker build -t portfolioimage .'
+         }
+        stage('docker image') {
+           steps {
+               build the docker image from dockerfile
+               sh 'docker build -t portfolioimage .'
               
-           //}
-        //}
-        //stage('Tag and Push to Docker Hub') {
-            //steps {
-                 //withCredentials([usernamePassword(credentialsId: 'Docker-Credentials', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
-                    //sh "echo \$DOCKER_PASSWORD | docker login -u \$DOCKER_USERNAME --password-stdin"
-                    //sh "docker tag portfolioimage $DOCKER_IMAGE_NAME"
-                    //sh "docker push $DOCKER_IMAGE_NAME"
-                //}
-            //}
-        //}
+           }
+        }
+        stage('Tag and Push to Docker Hub') {
+            steps {
+                 withCredentials([usernamePassword(credentialsId: 'Docker-Credentials', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
+                    sh "echo \$DOCKER_PASSWORD | docker login -u \$DOCKER_USERNAME --password-stdin"
+                    sh "docker tag portfolioimage $DOCKER_IMAGE_NAME"
+                    sh "docker push $DOCKER_IMAGE_NAME"
+                }
+            }
+        }
 
         stage('Deploy the image to minikube cluster') {
             steps {
